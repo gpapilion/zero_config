@@ -1,0 +1,7 @@
+for function in functions/*; do
+  . $function
+done
+
+for discoverer in discoverers/*; do
+  . $discoverer
+done

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+indent "0" "<mount>"
+mount | 
+(while read line ; do
+
+  if [[ "$line" =~ ^([[:graph:]]+)[[:space:]]on[[:space:]]([[:graph:]]+)[[:space:]]type[[:space:]]([[:graph:]]+)[[:space:]]\(([[:graph:]]+)\) ]]; then
+   indent "1" "<mount>"
+   indent "2" "<device>${BASH_REMATCH[1]}</device>"
+   indent "2" "<mountpoint>${BASH_REMATCH[2]}</mountpoint>"
+   indent "2" "<type>${BASH_REMATCH[3]}</type>"
+   indent "2" "<options>${BASH_REMATCH[4]}</options>"
+   indent "1" "</mount>"
+  fi
+
+done)
+
+indent "0" "</mount>"

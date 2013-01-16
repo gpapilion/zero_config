@@ -1,0 +1,7 @@
+Proof of concept bash configuration system with low
+requirements both memory, and software wise
+
+Requires Bash 4.
+
+Currently xmllint should be the only additional program
+required from a base install.

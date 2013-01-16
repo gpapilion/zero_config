@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# indent "level" "string"
+# desc: indent string n levels
+indent(){
+  local i=0
+  local indent=""
+  while test "$i" -lt "$1"; do
+    indent="$indent   "
+    i=$(($i+1))
+  done
+  echo "${indent}${2}"
+}
+

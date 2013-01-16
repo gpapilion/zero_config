@@ -1,0 +1,25 @@
+#!/bin/bash
+
+manage_file(){
+  local file="$2"
+  local source="$1"
+
+  if [ -e "$source" ]; then
+    local source_md5=$(md5sum "$source")
+  else
+    exit 1
+  fi
+
+  if [ -e $file ]; then
+    local file_md5=$(md5sum "$file")
+  fi
+  
+  if [[ "${file_md5%[[:space:]]$file}" == "${source_md5%[[:space:]]$source}" ]];then
+    echo "identical file"
+  else
+    echo cp "$source" "$file"
+  fi
+
+}
+
+

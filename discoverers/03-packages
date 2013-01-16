@@ -1,0 +1,14 @@
+#!/bin/bash
+
+indent "0" "<packages>"
+dpkg-query -W -f='${Package} ${Version}\n' |
+( while read line ; do
+  package="${line%[[:space:]]*}"
+  version="${line#$package[[:space:]]}"
+  indent "1" "<package>"
+  indent "2" "<name>$package</name>"
+  indent "2" "<version>$version</version>"
+  indent "1" "</package>"
+  done
+)
+indent "0" "</packages>"
